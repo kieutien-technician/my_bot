@@ -33,6 +33,12 @@ def generate_launch_description():
         }.items()
     )
 
+    joy_stick = IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource([os.path.join(
+                        get_package_share_directory(package_name),'launch','joystick.launch.py'
+                    )])
+        )
+
     # Xacro file
     xacro_file = os.path.join(
         get_package_share_directory(package_name),
@@ -108,6 +114,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         rsp,
+        # joy_stick,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner
