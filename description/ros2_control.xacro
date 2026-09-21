@@ -78,10 +78,10 @@
                 <left_joint>left_wheel_joint</left_joint>
                 <right_joint>right_wheel_joint</right_joint>
 
-                <wheel_separation>0.332</wheel_separation>
-                <wheel_diameter>0.068</wheel_diameter>
+                <wheel_separation>0.5</wheel_separation>
+                <wheel_diameter>0.10</wheel_diameter>
 
-                <max_wheel_torque>20</max_wheel_torque>
+                <max_wheel_torque>3</max_wheel_torque>
                 <max_wheel_acceleration>10.0</max_wheel_acceleration>
 
                 <command_topic>cmd_vel</command_topic>
