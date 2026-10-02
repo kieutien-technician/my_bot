@@ -43,7 +43,10 @@ def generate_launch_description():
     twist_mux = Node(
         package='twist_mux',
         executable='twist_mux',
-        parameters=[twist_mux_params, {'use_sim_time': True}],
+        parameters=[
+            twist_mux_params,
+            {'use_sim_time': False}
+        ],
         remappings=[('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')]
     )
 
@@ -54,7 +57,7 @@ def generate_launch_description():
         'robot.urdf.xacro'
     )
 
-    # Robot description
+    # Robot description - CommandCall: xacro /path/to/my_bot/description/robot.urdf.xacro use_ros2_control:=true
     robot_description = ParameterValue(
         Command([
             'xacro ',
@@ -76,9 +79,7 @@ def generate_launch_description():
         package='controller_manager',
         executable='ros2_control_node',
         parameters=[
-            {
-                'robot_description': robot_description
-            },
+            {'robot_description': robot_description},
             controller_params_file
         ],
         output='screen'
@@ -90,7 +91,7 @@ def generate_launch_description():
         actions=[controller_manager_node]
     )
 
-    # Diff drive controller spawner
+    # Diff drive controller spawner - CommandLine: ros2 run controller_manager spawner diff_cont
     diff_drive_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -105,7 +106,7 @@ def generate_launch_description():
         )
     )
 
-    # Joint state broadcaster spawner
+    # Joint state broadcaster spawner - CommandLine: ros2 run controller_manager spawner joint_broad
     joint_broad_spawner = Node(
         package='controller_manager',
         executable='spawner',
