@@ -90,7 +90,7 @@ def generate_launch_description():
         period=3.0,
         actions=[controller_manager_node]
     )
-
+    
     # Diff drive controller spawner - CommandLine: ros2 run controller_manager spawner diff_cont
     diff_drive_spawner = Node(
         package='controller_manager',
